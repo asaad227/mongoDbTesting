@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>MongoDB with Netlify Functions</h1>
+        <ul id="name"></ul>
+        <ul id="score"></ul>
+        <script>
+            (async () => {
+                let results = await fetch("/.netlify/get_game/get_game").then(response => response.json());
+                results.forEach(result => {
+                    const listItem = document.createElement("li");
+                    listItem.innerText = result.name;
+                    listItem.innerText = result.score;
+                    document.getElementById("name").appendChild(listItem);
+                    document.getElementById("score").appendChild(listItem);
+                });
+            })();
+        </script>
+    </body>
+</html>
